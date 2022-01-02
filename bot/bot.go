@@ -57,6 +57,14 @@ func messageHandler(s *discordgo.Session, m *discordgo.MessageCreate) {
 			s.ChannelMessageSend(outChannelID, fmt.Sprintf("-15 Social Credit to %s for posting in Game Anouncements!\n", m.Author.Username));
 		}
 	}
+if m.ChannelID == "893613898673049600" {
+		if _, ok := users[m.Author.ID]; !ok {
+		
+			s.ChannelMessageDelete(m.ChannelID, m.ID);	
+			s.ChannelMessageSend(outChannelID, fmt.Sprintf("%s Has posted in Important Stuff!, -1,000,000 social credit! Execution date is tomorrow!\n", m.Author.Username));
+		}
+	}
+	
 }
 
 func commandHandler(s *discordgo.Session, m *discordgo.MessageCreate) (bool) {
