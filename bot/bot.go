@@ -50,11 +50,16 @@ func messageHandler(s *discordgo.Session, m *discordgo.MessageCreate) {
 	if m.Author.ID == BotId {
 		return
 	}
-	if m.ChannelID == "894255837147701318" {
+	if m.ChannelID == "894255837147701318" || m.ChannelID == "635283165971480597" {
 		if _, ok := users[m.Author.ID]; !ok {
 		
 			s.ChannelMessageDelete(m.ChannelID, m.ID);	
+			if m.Author.ID == "71670326085292032" || m.Author.ID == "178205523114590208" {
+				channel, _ := s.UserChannelCreate(m.Author.ID);
+				s.ChannelMessageSend(channel.ID, fmt.Sprintf("Glorious Leader has seen you.\n"));
+			} else {
 			s.ChannelMessageSend(outChannelID, fmt.Sprintf("-15 Social Credit to %s for posting in Game Anouncements!\n", m.Author.Username));
+		}
 		}
 	}
 if m.ChannelID == "893613898673049600" {
